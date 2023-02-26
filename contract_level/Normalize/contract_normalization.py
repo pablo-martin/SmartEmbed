@@ -47,7 +47,7 @@ class Contract_Norm(object):
         token_list = token_clean.strip().strip('[').strip(']').split('], [')
         token_list = [e.strip("'") for e in token_list]
         if verbose:
-            print token_list
+            print(token_list)
 
         # assert token_list[0] == "pragma" and 
         assert token_list[-1] == "<EOF>"
@@ -64,7 +64,7 @@ class Contract_Norm(object):
         token_type = token_type_reg.findall(self.contract_tokens)
         
         if verbose:
-            print token_type
+            print(token_type)
 
         # assert token_type[0] == ",<1>," 
         assert token_type[-1] == ",<-1>,"
@@ -187,13 +187,13 @@ def main():
                 contract_norm = Contract_Norm(contract_tokens_path)
                 contract_norm.store()
                 break
-            except Exception, ex:
+            except Exception as ex:
 #                 print str(ex)
                 exception_case.write( str(contract_tokens_path) + '\n')
                 # break
                 continue
     exception_case.close()
-    print "Finished"
+    print("Finished")
     pass
 
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import urllib
-import urllib2
+import urllib.request as urllib2
 import random
 
 USER_AGENT_LIST = [
@@ -64,19 +64,19 @@ def crawl_url_by_get(url, proxy=None, enable_proxy=False):
             return html
         else :
             return None
-    except urllib2.HTTPError, ex:
+    except urllib2.HTTPError as ex:
         # print e.code, e.reason
-        print 'spider_url_by_get（） -------- ', str(ex) 
+        print('spider_url_by_get（） -------- ', str(ex))
         connection = ex
         return None
-    except urllib2.URLError, ex:
+    except urllib2.URLError as ex:
         # print e.reason
         # print e.code, e.reason
-        print 'spider_url_by_get（） -------- ', str(ex) 
+        print('spider_url_by_get（） -------- ', str(ex))
         # remove_proxy(proxy)
         return None
-    except Exception, ex:
-        print 'spider_url_by_get（） -------- ', str(ex) 
+    except Exception as ex:
+        print('spider_url_by_get（） -------- ', str(ex)) 
         # remove_proxy(proxy)
         return None
 

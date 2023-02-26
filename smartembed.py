@@ -6,13 +6,21 @@ from scipy.spatial.distance import pdist, cdist, squareform
 from scipy.spatial import distance
 import sys
 import os.path
-sys.path.append('./contract_level/Normalize/')
+
+
+base_path = os.path.dirname(__file__)
+dirs_add = (
+    "contract_level/Normalize/",
+    'contract_level/Vectorize/',
+    'contract_level/Crawl',
+    'todo/'
+)
+for _dir in dirs_add:
+    sys.path.append(os.path.join(base_path, _dir))
+
 from contract_normalization import Contract_Norm
-sys.path.append('./contract_level/Vectorize/')
 from contract_vectorize import Contract_Vec
-sys.path.append('./contract_level/Crawl')
 from contract_crawl import Contract_Detail
-sys.path.append('./todo/')
 from config import Config
 from clone_detect import Clone_Detect 
 
@@ -20,8 +28,8 @@ class SmartEmbed(object):
 
     def __init__(self):
 
-        self.USERINPUT = "./todo/USERINPUT/"
-        self.contract_model_path = "./contract_level/Model/FastText/fasttext_model"
+        self.USERINPUT = os.path.join(base_path, "todo/USERINPUT/")
+        self.contract_model_path = os.path.join(base_path, "contract_level/Model/FastText/fasttext_model")
         self.fasttext_model = self.get_fasttext_model()
 
     def get_fasttext_model(self):
@@ -53,7 +61,7 @@ class SmartEmbed(object):
             normalize 
         '''
         # print("entering normalizer...")
-        cn = Contract_Norm("./todo/CONTRACT_RESULT/")    
+        cn = Contract_Norm(os.path.join(base_path, "todo/CONTRACT_RESULT/"))    
         return cn.line_span, cn.normalized_tokens
 
     def vectorizer(self, norm_result):
