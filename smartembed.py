@@ -13,7 +13,8 @@ dirs_add = (
     "contract_level/Normalize/",
     'contract_level/Vectorize/',
     'contract_level/Crawl',
-    'todo/'
+    'todo/', 
+    ""
 )
 for _dir in dirs_add:
     sys.path.append(os.path.join(base_path, _dir))
@@ -51,11 +52,18 @@ class SmartEmbed(object):
     def parser(self):
         '''
             parse the user_input.sol into AST 
+            EDIT: i think Java doesn't see same env variables as Python so we need to
+            change to the directory. otherwise it doesn't find the Tokenize class
         '''
+        cwd = os.getcwd()
+        os.chdir(base_path)
         cmd = "java -classpath ./contract_level/Parse/antlr4.jar:./contract_level/Parse/target/ \
                     Tokenize ./todo/USERINPUT/user_input.sol ./todo/CONTRACT_RESULT/"
+        
         os.system(cmd) 
+        os.chdir(cwd)
 
+        
     def normalizer(self):
         '''
             normalize 
