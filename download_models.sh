@@ -1,6 +1,5 @@
 #! /bin/bash
 
-pip install gdown
 gdown https://drive.google.com/uc?id=1-LKJTZakqd8ntKzqVNtQZUgdZnFoYtpK
 unzip Contract_Embedding.zip
 cp -r Embedding/ contract_level/
