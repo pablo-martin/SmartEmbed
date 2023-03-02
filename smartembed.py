@@ -58,7 +58,7 @@ class SmartEmbed(object):
         cwd = os.getcwd()
         os.chdir(base_path)
         cmd = "java -classpath ./contract_level/Parse/antlr4.jar:./contract_level/Parse/target/ \
-                    Tokenize ./todo/USERINPUT/user_input.sol ./todo/CONTRACT_RESULT/"
+                    Tokenize ./todo/USERINPUT/user_input.sol ./todo/CONTRACT_RESULT/ > /dev/null 2>&1"
         
         os.system(cmd) 
         os.chdir(cwd)
